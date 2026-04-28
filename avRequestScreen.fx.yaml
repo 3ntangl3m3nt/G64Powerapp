@@ -3046,6 +3046,7 @@
                         BorderStyle: =BorderStyle.Solid
                         BorderThickness: =1
                         DataField: ="field_27"
+                        Default: =ThisItem.'Video Monitor Required'
                         DisplayMode: =Parent.DisplayMode
                         DisplayName: =DataSourceInfo([@'Submitted Av/VTC Requests'],DataSourceInfo.DisplayName,field_27)
                         Fill: |
