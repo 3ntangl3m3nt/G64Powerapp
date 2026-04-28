@@ -2,16 +2,7 @@
     BackgroundImage: =insignia3
     Fill: =Color.White
     LoadingSpinnerColor: =App.Theme.Colors.Primary
-    OnVisible: |
-        =Set(myGUID, GUID());
-        Set(varDigits, FirstN(
-            Filter(
-                ForAll(Split(Text(myGUID), ""), {Value: Text(Value)}),
-                IsNumeric(Value)
-            ),
-            5
-        ));
-        Set(requestID, "AV-" & Text(Now(), "mmddHH") & "-" & Concat(varDigits, Value));
+    OnVisible: =Set(requestID, "AV-" & Text(Now(), "mmddHH") & "-" & Left(Substitute(Text(GUID()), "-", ""), 5));
 
     ScreenContainer3 As groupContainer.verticalAutoLayoutContainer:
         DropShadow: =DropShadow.Light
@@ -234,8 +225,7 @@
                         Required: =true
                         Update: =DataCardValue21.Text
                         Width: =(Parent.Width-20)/2
-                        WidthFit: |
-                            =false
+                        WidthFit: =false
                         X: =1
                         Y: =1
                         ZIndex: =7
@@ -532,8 +522,7 @@
                             Fill: =
                             FontColor: =
                             Height: =HourValue10.Height
-                            Text: |-
-                                =":"
+                            Text: =":"
                             Width: =10
                             X: =HourValue10.X + HourValue10.Width
                             Y: =HourValue10.Y
@@ -648,8 +637,7 @@
                             Fill: =
                             FontColor: =
                             Height: =HourValue7.Height
-                            Text: |-
-                                =":"
+                            Text: =":"
                             Width: =10
                             X: =HourValue7.X + HourValue7.Width
                             Y: =HourValue7.Y
@@ -843,8 +831,7 @@
                             Fill: =
                             FontColor: =
                             Height: =HourValue9.Height
-                            Text: |-
-                                =":"
+                            Text: =":"
                             Width: =10
                             X: =HourValue9.X + HourValue9.Width
                             Y: =HourValue9.Y
@@ -959,8 +946,7 @@
                             Fill: =
                             FontColor: =
                             Height: =HourValue8.Height
-                            Text: |-
-                                =":"
+                            Text: =":"
                             Width: =10
                             X: =HourValue8.X + HourValue8.Width
                             Y: =HourValue8.Y
@@ -1075,8 +1061,7 @@
                             Fill: =
                             FontColor: =
                             Height: =HourValue12.Height
-                            Text: |-
-                                =":"
+                            Text: =":"
                             Width: =10
                             X: =HourValue12.X + HourValue12.Width
                             Y: =HourValue12.Y
@@ -1191,8 +1176,7 @@
                             Fill: =
                             FontColor: =
                             Height: =HourValue11.Height
-                            Text: |-
-                                =":"
+                            Text: =":"
                             Width: =10
                             X: =HourValue11.X + HourValue11.Width
                             Y: =HourValue11.Y
@@ -1725,8 +1709,7 @@
                         BorderColor: =App.Theme.Colors.Darker40
                         BorderStyle: =BorderStyle.Solid
                         DataField: ="field_43"
-                        Default: |
-                            =
+                        Default: =
                         DisplayMode: =Parent.DisplayMode
                         DisplayName: =DataSourceInfo([@'Submitted Av/VTC Requests'],DataSourceInfo.DisplayName,field_43)
                         Fill: =RGBA(0, 0, 0, 0)
@@ -1789,8 +1772,7 @@
                             Fill: =
                             FontColor: =
                             Height: =HourValue13.Height
-                            Text: |-
-                                =":"
+                            Text: =":"
                             Width: =10
                             X: =HourValue13.X + HourValue13.Width
                             Y: =HourValue13.Y
@@ -1842,8 +1824,7 @@
                         BorderStyle: =BorderStyle.Dashed
                         BorderThickness: =1
                         DataField: ="field_20"
-                        Default: |-
-                            =ThisItem.'# of Wireless Handheld Mics'
+                        Default: =ThisItem.'# of Wireless Handheld Mics'
                         DisplayMode: =Parent.DisplayMode
                         DisplayName: =DataSourceInfo([@'Submitted Av/VTC Requests'],DataSourceInfo.DisplayName,field_20)
                         Fill: =RGBA(50,205,50, 0.6)
@@ -1903,8 +1884,7 @@
                             Height: =32
                             Items: =[1,2,3,4]
                             ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                            Width: |
-                                =56
+                            Width: =56
                             X: =24
                             Y: =DataCardKey67.Y + DataCardKey67.Height + 4
                             ZIndex: =5
@@ -1914,8 +1894,7 @@
                         BorderStyle: =BorderStyle.Dashed
                         BorderThickness: =1
                         DataField: ="field_12"
-                        Default: |-
-                            =ThisItem.'# of Podiums'
+                        Default: =ThisItem.'# of Podiums'
                         DisplayMode: =Parent.DisplayMode
                         DisplayName: =DataSourceInfo([@'Submitted Av/VTC Requests'],DataSourceInfo.DisplayName,field_12)
                         Fill: =RGBA(50,205,50, 0.6)
@@ -1975,8 +1954,7 @@
                             Height: =32
                             Items: =[1, 2]
                             ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                            Width: |
-                                =56
+                            Width: =56
                             X: =24
                             Y: =DataCardKey59.Y + DataCardKey59.Height + 4
                             ZIndex: =5
@@ -1998,8 +1976,7 @@
                         Width: |
                             =If(wirelessHandMicReqDataCard.Update = true, (Parent.Width - 20) / 2, Parent.Width - 20)
                         X: =-1
-                        Y: |
-                            =6.5
+                        Y: =6.5
                         ZIndex: =7
 
                         DataCardKey66 As Text:
@@ -2064,8 +2041,7 @@
                         BorderStyle: =BorderStyle.Dashed
                         BorderThickness: =1
                         DataField: ="field_24"
-                        Default: |-
-                            =ThisItem.'# of Speakers'
+                        Default: =ThisItem.'# of Speakers'
                         DisplayMode: =Parent.DisplayMode
                         DisplayName: =DataSourceInfo([@'Submitted Av/VTC Requests'],DataSourceInfo.DisplayName,field_24)
                         Fill: =RGBA(50,205,50, 0.6)
@@ -2212,8 +2188,7 @@
                         BorderStyle: =BorderStyle.Dashed
                         BorderThickness: =1
                         DataField: ="field_14"
-                        Default: |-
-                            =ThisItem.'# of Projectors'
+                        Default: =ThisItem.'# of Projectors'
                         DisplayMode: =Parent.DisplayMode
                         DisplayName: =DataSourceInfo([@'Submitted Av/VTC Requests'],DataSourceInfo.DisplayName,field_14)
                         Fill: =RGBA(50,205,50, 0.6)
@@ -2251,7 +2226,7 @@
                             Width: =Parent.Width - 48
                             Wrap: =true
                             X: =24
-                            Y: =projectorDropdown.Y +projectorDropdown.Height
+                            Y: =projectorDropdown.Y + projectorDropdown.Height
                             ZIndex: =3
 
                         StarVisible61 As Text:
@@ -2273,8 +2248,7 @@
                             Height: =32
                             Items: =[1, 2]
                             ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                            Width: |
-                                =56
+                            Width: =56
                             X: =24
                             Y: =DataCardKey61.Y + DataCardKey61.Height + 4
                             ZIndex: =5
@@ -2361,8 +2335,7 @@
                         BorderStyle: =BorderStyle.Dashed
                         BorderThickness: =1
                         DataField: ="field_16"
-                        Default: |-
-                            =ThisItem.'# of Projector Screens'
+                        Default: =ThisItem.'# of Projector Screens'
                         DisplayMode: =Parent.DisplayMode
                         DisplayName: =DataSourceInfo([@'Submitted Av/VTC Requests'],DataSourceInfo.DisplayName,field_16)
                         Fill: =RGBA(50,205,50, 0.6)
@@ -2587,8 +2560,7 @@
                         BorderStyle: =BorderStyle.Dashed
                         BorderThickness: =1
                         DataField: ="field_18"
-                        Default: |-
-                            =ThisItem.'# of Wired Handheld Mics'
+                        Default: =ThisItem.'# of Wired Handheld Mics'
                         DisplayMode: =Parent.DisplayMode
                         DisplayName: =DataSourceInfo([@'Submitted Av/VTC Requests'],DataSourceInfo.DisplayName,field_18)
                         Fill: =RGBA(50,205,50, 0.6)
@@ -2648,8 +2620,7 @@
                             Height: =32
                             Items: =[1, 2]
                             ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                            Width: |
-                                =56
+                            Width: =56
                             X: =24
                             Y: =DataCardKey65.Y + DataCardKey65.Height + 4
                             ZIndex: =5
@@ -3072,12 +3043,9 @@
                     monitorReqDataCard As typedDataCard.fluentV9ToggleEditCard:
                         BorderColor: |
                             =If(monitorReqDataCard.Update, RGBA(255,0,0,.9), RGBA(144, 145, 126, 0.3))
-                        BorderStyle: |
-                            =BorderStyle.Solid
-                        BorderThickness: |
-                            =1
+                        BorderStyle: =BorderStyle.Solid
+                        BorderThickness: =1
                         DataField: ="field_27"
-                        Default: =ThisItem.'Video Monitor Required'
                         DisplayMode: =Parent.DisplayMode
                         DisplayName: =DataSourceInfo([@'Submitted Av/VTC Requests'],DataSourceInfo.DisplayName,field_27)
                         Fill: |
@@ -3538,8 +3506,7 @@
                             Fill: =
                             FontColor: =
                             Height: =HourValue14.Height
-                            Text: |-
-                                =":"
+                            Text: =":"
                             Width: =10
                             X: =HourValue14.X + HourValue14.Width
                             Y: =HourValue14.Y
@@ -3665,12 +3632,10 @@
 
                     monitorsDataCard As typedDataCard.fluentV9NumberEditCard:
                         BorderColor: =RGBA(255,0,0,.9)
-                        BorderStyle: |
-                            =BorderStyle.Dashed
+                        BorderStyle: =BorderStyle.Dashed
                         BorderThickness: =1
                         DataField: ="field_28"
-                        Default: |-
-                            =ThisItem.'# of Video Monitors'
+                        Default: =ThisItem.'# of Video Monitors'
                         DisplayMode: =Parent.DisplayMode
                         DisplayName: =DataSourceInfo([@'Submitted Av/VTC Requests'],DataSourceInfo.DisplayName,field_28)
                         Fill: =RGBA(50,205,50, 0.6)
@@ -3740,17 +3705,14 @@
                         BorderStyle: =BorderStyle.Dashed
                         BorderThickness: =1
                         DataField: ="field_26"
-                        Default: |-
-                            =ThisItem.'# of Table-top Mics'
+                        Default: =ThisItem.'# of Table-top Mics'
                         DisplayMode: =Parent.DisplayMode
                         DisplayName: =DataSourceInfo([@'Submitted Av/VTC Requests'],DataSourceInfo.DisplayName,field_26)
                         Fill: =RGBA(50,205,50, 0.6)
                         Height: =70
-                        Required: |
-                            =tableMicReqDataCard.Update=true
+                        Required: =tableMicReqDataCard.Update=true
                         Update: =tableMicDropdown.Selected.Value
-                        Visible: |
-                            =tableMicReqDataCard.Update=true
+                        Visible: =tableMicReqDataCard.Update=true
                         Width: =649
                         X: =1
                         Y: =16
@@ -3966,8 +3928,7 @@
                         BorderStyle: =BorderStyle.Dashed
                         BorderThickness: =1
                         DataField: ="field_30"
-                        Default: |-
-                            =ThisItem.'# of Cameras'
+                        Default: =ThisItem.'# of Cameras'
                         DisplayMode: =Parent.DisplayMode
                         DisplayName: =DataSourceInfo([@'Submitted Av/VTC Requests'],DataSourceInfo.DisplayName,field_30)
                         Fill: =RGBA(50,205,50, 0.6)
@@ -4114,8 +4075,7 @@
                         BorderStyle: =BorderStyle.Dashed
                         BorderThickness: =1
                         DataField: ="field_22"
-                        Default: |-
-                            =ThisItem.'# of Lapel Mics'
+                        Default: =ThisItem.'# of Lapel Mics'
                         DisplayMode: =Parent.DisplayMode
                         DisplayName: =DataSourceInfo([@'Submitted Av/VTC Requests'],DataSourceInfo.DisplayName,field_22)
                         Fill: =RGBA(50,205,50, 0.6)
@@ -4175,10 +4135,9 @@
                             Height: =32
                             Items: =[1, 2]
                             ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                            Width: |
-                                =56
+                            Width: =56
                             X: =24
-                            Y: =DataCardKey59.Y + DataCardKey59.Height + 4
+                            Y: =DataCardKey69.Y + DataCardKey69.Height + 4
                             ZIndex: =5
 
                     lapelMicReqDataCard As typedDataCard.fluentV9ToggleEditCard:
@@ -4332,12 +4291,11 @@
                         OnSelect: |
                             =If(
                                 avForm.Valid,
-                                SubmitForm(avForm); 
-                                reqSubDateDataCard.Default = Now();  // Update the Default to the current date/time
-                                Navigate(homeScreen, ScreenTransition.Fade);  // Navigate after submission
+                                SubmitForm(avForm);
+                                Navigate(homeScreen, ScreenTransition.Fade);
                                 Notify("Form submitted successfully!", NotificationType.Success),
                                 Notify("Please fill all required fields", NotificationType.Error);
-                                If(avForm.Unsaved, ResetForm(avForm)) // Reset if invalid
+                                If(avForm.Unsaved, ResetForm(avForm))
                             )
                         Text: ="Submit"
                         Width: =120
