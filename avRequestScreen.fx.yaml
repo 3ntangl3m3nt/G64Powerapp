@@ -134,8 +134,10 @@
                     NumberOfColumns: =1
                     SnapToColumns: =false
                     UseFluentV9Cards: =true
-                    Width: =Parent.Width-20
+                    Width: =Parent.Width - 20
                     ZIndex: =1
+                    OnFailure: =Notify("Submission failed. Please try again.", NotificationType.Error)
+                    OnSuccess: =Navigate(homeScreen, ScreenTransition.Fade); Notify("Form submitted successfully!", NotificationType.Success)
 
                     personnelRequiredDataCard As typedDataCard.fluentV9ToggleEditCard:
                         BorderColor: =RGBA(144, 145, 126, 0.5)
@@ -149,7 +151,7 @@
                         Height: =70
                         Required: =false
                         Update: =DataCardValue67.Checked
-                        Width: =Parent.Width-20
+                        Width: =Parent.Width - 20
                         X: =0
                         Y: =0
                         ZIndex: =7
@@ -224,7 +226,7 @@
                         MaxLength: =DataSourceInfo([@'Submitted Av/VTC Requests'], DataSourceInfo.MaxLength, Title)
                         Required: =true
                         Update: =DataCardValue21.Text
-                        Width: =(Parent.Width-20)/2
+                        Width: =(Parent.Width - 20) / 2
                         WidthFit: =false
                         X: =1
                         Y: =1
@@ -296,12 +298,7 @@
                         BorderStyle: =BorderStyle.Solid
                         BorderThickness: =1
                         DataField: ="field_1"
-                        Default: |
-                            =If(
-                                !IsBlank(requestID),
-                                requestID,
-                                "AV-" & Text(Now(), "yymmddHHmm") & "-00000"
-                            )
+                        Default: =requestID
                         DisplayMode: =DisplayMode.View
                         DisplayName: ="ID"
                         Fill: =RGBA(144, 145, 126, 0.3)
@@ -309,7 +306,7 @@
                         MaxLength: =DataSourceInfo([@'Submitted Av/VTC Requests'], DataSourceInfo.MaxLength, field_1)
                         Required: =false
                         Update: =DataCardValue37.Text
-                        Width: =(Parent.Width-20)/2
+                        Width: =(Parent.Width - 20) / 2
                         X: =0
                         Y: =1
                         ZIndex: =7
@@ -332,10 +329,8 @@
                             AccessibleLabel: =Parent.DisplayName
                             Appearance: =Appearance.FilledDarker
                             BorderStyle: =""
-                            Color: =RGBA(0, 0, 0, 1)
                             Default: =Parent.Default
                             DisplayMode: =Parent.DisplayMode
-                            Fill: =RGBA(0, 0, 0, 1)
                             Font: =""
                             FontWeight: =""
                             MaxLength: =-1
@@ -388,7 +383,7 @@
                         Height: =70
                         MaxLength: =DataSourceInfo([@'Submitted Av/VTC Requests'], DataSourceInfo.MaxLength, field_2)
                         Required: =false
-                        Update: =DataCardValue38.Value
+                        Update: =DataCardValue38.Text
                         Visible: =false
                         Width: =650
                         X: =1
@@ -409,18 +404,20 @@
                             Y: =10
                             ZIndex: =1
 
-                        "DataCardValue38 As 'Text input'":
+                        DataCardValue38 As modernTextInput:
                             AccessibleLabel: =Parent.DisplayName
-                            BasePaletteColor: =
-                            BorderColor: =
+                            Appearance: =Appearance.FilledDarker
+                            BorderStyle: =""
+                            Default: =Parent.Default
                             DisplayMode: =Parent.DisplayMode
-                            Fill: =
-                            FontColor: =
-                            Height: =32
-                            Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                            Font: =""
+                            FontWeight: =""
+                            MaxLength: =-1
+                            Placeholder: =""
                             Required: =Parent.Required
+                            Size: =0
+                            TriggerOutput: =TriggerOutput.FocusOut
                             ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                            Value: =Parent.Default
                             Width: =Parent.Width - 48
                             X: =24
                             Y: =DataCardKey45.Y + DataCardKey45.Height + 4
@@ -467,7 +464,7 @@
                         Required: =personnelRequiredDataCard.Update=true
                         Update: =If(Not IsBlank(DateValue10.SelectedDate), DateTime(Year(DateValue10.SelectedDate), Month(DateValue10.SelectedDate), Day(DateValue10.SelectedDate), Value(HourValue10.Selected.Value), Value(MinuteValue10.Selected.Value), Second(DateValue10.SelectedDate)))
                         Visible: =personnelRequiredDataCard.Update=true
-                        Width: =(Parent.Width-20)/2
+                        Width: =(Parent.Width - 20) / 2
                         X: =0
                         Y: =2
                         ZIndex: =7
@@ -582,7 +579,7 @@
                         Required: =personnelRequiredDataCard.Update=false
                         Update: =If(Not IsBlank(DateValue7.SelectedDate), DateTime(Year(DateValue7.SelectedDate), Month(DateValue7.SelectedDate), Day(DateValue7.SelectedDate), Value(HourValue7.Selected.Value), Value(MinuteValue7.Selected.Value), Second(DateValue7.SelectedDate)))
                         Visible: =personnelRequiredDataCard.Update=false
-                        Width: =(Parent.Width-20)/2
+                        Width: =(Parent.Width - 20) / 2
                         X: =1
                         Y: =2
                         ZIndex: =7
@@ -697,7 +694,7 @@
                         MaxLength: =DataSourceInfo([@'Submitted Av/VTC Requests'], DataSourceInfo.MaxLength, field_3)
                         Required: =true
                         Update: =DataCardValue39.Text
-                        Width: =(Parent.Width-20)/2
+                        Width: =(Parent.Width - 20) / 2
                         X: =0
                         Y: =2
                         ZIndex: =7
@@ -776,7 +773,7 @@
                         Required: =personnelRequiredDataCard.Update=true
                         Update: =If(Not IsBlank(DateValue9.SelectedDate), DateTime(Year(DateValue9.SelectedDate), Month(DateValue9.SelectedDate), Day(DateValue9.SelectedDate), Value(HourValue9.Selected.Value), Value(MinuteValue9.Selected.Value), Second(DateValue9.SelectedDate)))
                         Visible: =personnelRequiredDataCard.Update=true
-                        Width: =(Parent.Width-20)/2
+                        Width: =(Parent.Width - 20) / 2
                         X: =1
                         Y: =3
                         ZIndex: =7
@@ -891,7 +888,7 @@
                         Required: =personnelRequiredDataCard.Update=true
                         Update: =If(Not IsBlank(DateValue8.SelectedDate), DateTime(Year(DateValue8.SelectedDate), Month(DateValue8.SelectedDate), Day(DateValue8.SelectedDate), Value(HourValue8.Selected.Value), Value(MinuteValue8.Selected.Value), Second(DateValue8.SelectedDate)))
                         Visible: =personnelRequiredDataCard.Update=true
-                        Width: =(Parent.Width-20)/2
+                        Width: =(Parent.Width - 20) / 2
                         X: =-1
                         Y: =3
                         ZIndex: =7
@@ -1006,7 +1003,7 @@
                         Required: =personnelRequiredDataCard.Update=false
                         Update: =If(Not IsBlank(DateValue12.SelectedDate), DateTime(Year(DateValue12.SelectedDate), Month(DateValue12.SelectedDate), Day(DateValue12.SelectedDate), Value(HourValue12.Selected.Value), Value(MinuteValue12.Selected.Value), Second(DateValue12.SelectedDate)))
                         Visible: =personnelRequiredDataCard.Update=false
-                        Width: =(Parent.Width-20)/2
+                        Width: =(Parent.Width - 20) / 2
                         X: =1
                         Y: =3
                         ZIndex: =7
@@ -1121,7 +1118,7 @@
                         Required: =personnelRequiredDataCard.Update=false
                         Update: =If(Not IsBlank(DateValue11.SelectedDate), DateTime(Year(DateValue11.SelectedDate), Month(DateValue11.SelectedDate), Day(DateValue11.SelectedDate), Value(HourValue11.Selected.Value), Value(MinuteValue11.Selected.Value), Second(DateValue11.SelectedDate)))
                         Visible: =personnelRequiredDataCard.Update=false
-                        Width: =(Parent.Width-20)/2
+                        Width: =(Parent.Width - 20) / 2
                         X: =-1
                         Y: =3
                         ZIndex: =7
@@ -1235,8 +1232,8 @@
                         Height: =DataCardValue69.Height+10
                         MaxLength: =DataSourceInfo([@'Submitted Av/VTC Requests'], DataSourceInfo.MaxLength, field_35)
                         Required: =false
-                        Update: =DataCardValue69.Value
-                        Width: =(Parent.Width-20)/2
+                        Update: =DataCardValue69.Text
+                        Width: =(Parent.Width - 20) / 2
                         X: =1
                         Y: =4
                         ZIndex: =7
@@ -1255,20 +1252,21 @@
                             Y: =10
                             ZIndex: =1
 
-                        "DataCardValue69 As 'Text input'":
+                        DataCardValue69 As modernTextInput:
                             AccessibleLabel: =Parent.DisplayName
-                            BasePaletteColor: =
-                            BorderColor: =
+                            Appearance: =Appearance.FilledDarker
+                            BorderStyle: =""
+                            Default: =Parent.Default
                             DisplayMode: =Parent.DisplayMode
-                            Fill: =
-                            FontColor: =
-                            Height: =32
-                            Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                            Font: =""
+                            FontWeight: =""
+                            MaxLength: =-1
                             PaddingBottom: =10
                             Placeholder: =If(personnelRequiredDataCard.Update = true, "Type Custom Music Requests Here", "")
                             Required: =Parent.Required
+                            Size: =0
+                            TriggerOutput: =TriggerOutput.FocusOut
                             ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                            Value: =Parent.Default
                             Width: =Parent.Width - 48
                             X: =24
                             Y: =DataCardKey82.Y + DataCardKey82.Height + 4
@@ -1315,7 +1313,7 @@
                         Required: =true
                         Update: =Value(DataCardValue68.Value)
                         Visible: =true
-                        Width: =(Parent.Width-20)/2
+                        Width: =(Parent.Width - 20) / 2
                         X: =-1
                         Y: =4
                         ZIndex: =7
@@ -1340,7 +1338,7 @@
                             Default: =Parent.Default
                             DisplayMode: =Parent.DisplayMode
                             Max: =Blank()
-                            Min: =Blank()
+                            Min: =1
                             Size: =0
                             ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
                             Width: =Parent.Width - 48
@@ -1388,9 +1386,9 @@
                         Height: =70
                         MaxLength: =DataSourceInfo([@'Submitted Av/VTC Requests'], DataSourceInfo.MaxLength, field_32)
                         Required: =vipAttendDataCard.Update=true
-                        Update: =DataCardValue66.Value
+                        Update: =DataCardValue66.Text
                         Visible: =vipAttendDataCard.Update=true
-                        Width: =(Parent.Width-20)/2
+                        Width: =(Parent.Width - 20) / 2
                         X: =1
                         Y: =5
                         ZIndex: =7
@@ -1409,18 +1407,20 @@
                             Y: =10
                             ZIndex: =1
 
-                        "DataCardValue66 As 'Text input'":
+                        DataCardValue66 As modernTextInput:
                             AccessibleLabel: =Parent.DisplayName
-                            BasePaletteColor: =
-                            BorderColor: =
+                            Appearance: =Appearance.FilledDarker
+                            BorderStyle: =""
+                            Default: =Parent.Default
                             DisplayMode: =Parent.DisplayMode
-                            Fill: =
-                            FontColor: =
-                            Height: =32
-                            Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                            Font: =""
+                            FontWeight: =""
+                            MaxLength: =-1
+                            Placeholder: =""
                             Required: =Parent.Required
+                            Size: =0
+                            TriggerOutput: =TriggerOutput.FocusOut
                             ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                            Value: =Parent.Default
                             Width: =Parent.Width - 48
                             X: =24
                             Y: =DataCardKey79.Y + DataCardKey79.Height + 4
@@ -1736,16 +1736,16 @@
                             Y: =10
                             ZIndex: =1
 
-                        "DateValue13 As 'Date picker'":
+                        DateValue13 As modernDatePicker:
                             AccessibleLabel: =Parent.DisplayName
-                            BasePaletteColor: =
-                            BorderColor: =
+                            Appearance: =Appearance.FilledDarker
+                            BorderStyle: =""
+                            DefaultDate: =Parent.Default
                             DisplayMode: =Parent.DisplayMode
-                            Fill: =
-                            FontColor: =
-                            Height: =32
-                            Required: =Parent.Required
-                            SelectedDate: =Parent.Default
+                            Font: =""
+                            FontWeight: =""
+                            Placeholder: ="Select a date..."
+                            Size: =0
                             ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
                             Width: =(Parent.Width - 48) / 2
                             X: =24
@@ -1832,7 +1832,7 @@
                         Required: =wirelessHandMicReqDataCard.Update=true
                         Update: =wirelessHandMicDropdown.Selected.Value
                         Visible: =wirelessHandMicReqDataCard.Update=true
-                        Width: =(Parent.Width-20)/2
+                        Width: =(Parent.Width - 20) / 2
                         X: =1
                         Y: =6.5
                         ZIndex: =7
@@ -1902,7 +1902,7 @@
                         Required: =podiumReqDataCard.Update=true
                         Update: =podiumDropdown.Selected.Value
                         Visible: =podiumReqDataCard.Update=true
-                        Width: =(Parent.Width-20)/2
+                        Width: =(Parent.Width - 20) / 2
                         X: =1
                         Y: =6
                         ZIndex: =7
@@ -2049,7 +2049,7 @@
                         Required: =speakerReqDataCard.Update=true
                         Update: =speakerDropdown.Selected.Value
                         Visible: =speakerReqDataCard.Update=true
-                        Width: =(Parent.Width-20)/2
+                        Width: =(Parent.Width - 20) / 2
                         X: =1
                         Y: =7
                         ZIndex: =7
@@ -2196,7 +2196,7 @@
                         Required: =projReqDataCard.Update=true
                         Update: =projectorDropdown.Selected.Value
                         Visible: =projReqDataCard.Update=true
-                        Width: =(Parent.Width-20)/2
+                        Width: =(Parent.Width - 20) / 2
                         X: =1
                         Y: =8
                         ZIndex: =7
@@ -2343,7 +2343,7 @@
                         Required: =projScreenReqDataCard.Update=true
                         Update: =projectorScreenDropdown.Selected.Value
                         Visible: =projScreenReqDataCard.Update=true
-                        Width: =(Parent.Width-20)/2
+                        Width: =(Parent.Width - 20) / 2
                         X: =1
                         Y: =9
                         ZIndex: =7
@@ -2568,7 +2568,7 @@
                         Required: =wiredHandMicReqDataCard.Update=true
                         Update: =wiredHandMicDropdown.Selected.Value
                         Visible: =wiredHandMicReqDataCard.Update=true
-                        Width: =(Parent.Width-20)/2
+                        Width: =(Parent.Width - 20) / 2
                         X: =1
                         Y: =11
                         ZIndex: =7
@@ -2719,8 +2719,8 @@
                         Height: =70
                         MaxLength: =DataSourceInfo([@'Submitted Av/VTC Requests'], DataSourceInfo.MaxLength, field_40)
                         Required: =true
-                        Update: =DataCardValue74.Value
-                        Width: =(Parent.Width-20)/2
+                        Update: =DataCardValue74.Text
+                        Width: =(Parent.Width - 20) / 2
                         X: =1
                         Y: =13
                         ZIndex: =7
@@ -2739,18 +2739,20 @@
                             Y: =10
                             ZIndex: =1
 
-                        "DataCardValue74 As 'Text input'":
+                        DataCardValue74 As modernTextInput:
                             AccessibleLabel: =Parent.DisplayName
-                            BasePaletteColor: =
-                            BorderColor: =
+                            Appearance: =Appearance.FilledDarker
+                            BorderStyle: =""
+                            Default: =Parent.Default
                             DisplayMode: =Parent.DisplayMode
-                            Fill: =
-                            FontColor: =
-                            Height: =40
-                            Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                            Font: =""
+                            FontWeight: =""
+                            MaxLength: =-1
+                            Placeholder: =""
                             Required: =Parent.Required
+                            Size: =0
+                            TriggerOutput: =TriggerOutput.FocusOut
                             ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                            Value: =Parent.Default
                             Width: =Parent.Width - 48
                             X: =24
                             Y: =DataCardKey87.Y + DataCardKey87.Height + 4
@@ -2796,7 +2798,7 @@
                         Height: =100
                         MaxLength: =DataSourceInfo([@'Submitted Av/VTC Requests'], DataSourceInfo.MaxLength, field_37)
                         Required: =addEquipReqDataCard.Update=true
-                        Update: =DataCardValue71.Value
+                        Update: =DataCardValue71.Text
                         Visible: =addEquipReqDataCard.Update=true
                         Width: =649
                         X: =1
@@ -2817,18 +2819,20 @@
                             Y: =10
                             ZIndex: =1
 
-                        "DataCardValue71 As 'Text input'":
+                        DataCardValue71 As modernTextInput:
                             AccessibleLabel: =Parent.DisplayName
-                            BasePaletteColor: =
-                            BorderColor: =
+                            Appearance: =Appearance.FilledDarker
+                            BorderStyle: =""
+                            Default: =Parent.Default
                             DisplayMode: =Parent.DisplayMode
-                            Fill: =
-                            FontColor: =
-                            Height: =90
-                            Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                            Font: =""
+                            FontWeight: =""
+                            MaxLength: =-1
+                            Placeholder: =""
                             Required: =Parent.Required
+                            Size: =0
+                            TriggerOutput: =TriggerOutput.FocusOut
                             ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                            Value: =Parent.Default
                             Width: =Parent.Width - 48
                             X: =24
                             Y: =DataCardKey84.Y + DataCardKey84.Height + 4
@@ -2879,7 +2883,7 @@
                                 DisplayName: DataCardValue73.Selected.DisplayName,
                                 Email: DataCardValue73.Selected.Mail
                             }
-                        Width: =(Parent.Width-20)/2
+                        Width: =(Parent.Width - 20) / 2
                         X: =-1
                         Y: =13
                         ZIndex: =7
@@ -2971,7 +2975,7 @@
                         Height: =70
                         Required: =true
                         Update: =txt_PhoneNumber.Text
-                        Width: =(Parent.Width-20)/2
+                        Width: =(Parent.Width - 20) / 2
                         X: =1
                         Y: =14
                         ZIndex: =7
@@ -3018,23 +3022,20 @@
                             Y: =DataCardKey89.Y
                             ZIndex: =4
 
-                        txt_PhoneNumber As text:
-                            BorderColor: =
-                            BorderThickness: =2
-                            Color: =RGBA(0, 0, 0, 1)
+                        txt_PhoneNumber As modernTextInput:
+                            AccessibleLabel: =Parent.DisplayName
+                            Appearance: =Appearance.FilledDarker
+                            BorderStyle: =""
                             Default: =Parent.Default
-                            DisabledBorderColor: =RGBA(166, 166, 166, 1)
-                            DisabledColor: =RGBA(166, 166, 166, 1)
-                            DisabledFill: =RGBA(244, 244, 244, 1)
-                            FocusedBorderThickness: =4
-                            Font: =App.Theme.Font
-                            Format: =TextFormat.Number
-                            HoverBorderColor: =App.Theme.Colors.Darker40
-                            HoverColor: =RGBA(0, 0, 0, 1)
-                            HoverFill: =App.Theme.Colors.Lighter70
+                            DisplayMode: =Parent.DisplayMode
+                            Font: =""
+                            FontWeight: =""
                             MaxLength: =10
-                            OnChange: =
-                            Size: =13
+                            Placeholder: ="10-digit number (e.g. 5551234567)"
+                            Required: =Parent.Required
+                            Size: =0
+                            TriggerOutput: =TriggerOutput.FocusOut
+                            ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
                             Width: =Parent.Width - 48
                             X: =24
                             Y: =DataCardKey89.Y + DataCardKey89.Height + 4
@@ -3055,7 +3056,7 @@
                         Required: =false
                         Update: =DataCardValue61.Checked
                         Visible: =false
-                        Width: =(Parent.Width-20)/2
+                        Width: =(Parent.Width - 20) / 2
                         X: =-1
                         Y: =14
                         ZIndex: =7
@@ -3130,7 +3131,7 @@
                         MaxLength: =DataSourceInfo([@'Submitted Av/VTC Requests'], DataSourceInfo.MaxLength, field_41)
                         Required: =true
                         Update: =DataCardValue75.Text
-                        Width: =(Parent.Width-20)/2
+                        Width: =(Parent.Width - 20) / 2
                         X: =-1
                         Y: =14
                         ZIndex: =7
@@ -3208,7 +3209,7 @@
                         Height: =50
                         Required: =false
                         Update: =DataCardValue80.Attachments
-                        Width: =(Parent.Width-20)
+                        Width: =(Parent.Width - 20)
                         X: =0
                         Y: =15
                         ZIndex: =7
@@ -3374,7 +3375,7 @@
                         Height: =70
                         MaxLength: =DataSourceInfo([@'Submitted Av/VTC Requests'], DataSourceInfo.MaxLength, field_45)
                         Required: =false
-                        Update: =DataCardValue78.Value
+                        Update: =DataCardValue78.Text
                         Visible: =false
                         Width: =650
                         X: =0
@@ -3395,18 +3396,20 @@
                             Y: =10
                             ZIndex: =1
 
-                        "DataCardValue78 As 'Text input'":
+                        DataCardValue78 As modernTextInput:
                             AccessibleLabel: =Parent.DisplayName
-                            BasePaletteColor: =
-                            BorderColor: =
+                            Appearance: =Appearance.FilledDarker
+                            BorderStyle: =""
+                            Default: =Parent.Default
                             DisplayMode: =Parent.DisplayMode
-                            Fill: =
-                            FontColor: =
-                            Height: =32
-                            Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                            Font: =""
+                            FontWeight: =""
+                            MaxLength: =-1
+                            Placeholder: =""
                             Required: =Parent.Required
+                            Size: =0
+                            TriggerOutput: =TriggerOutput.FocusOut
                             ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                            Value: =Parent.Default
                             Width: =Parent.Width - 48
                             X: =24
                             Y: =DataCardKey92.Y + DataCardKey92.Height + 4
@@ -3565,7 +3568,7 @@
                         Height: =70
                         MaxLength: =DataSourceInfo([@'Submitted Av/VTC Requests'], DataSourceInfo.MaxLength, field_47)
                         Required: =false
-                        Update: =DataCardValue79.Value
+                        Update: =DataCardValue79.Text
                         Visible: =false
                         Width: =650
                         X: =0
@@ -3586,18 +3589,20 @@
                             Y: =10
                             ZIndex: =1
 
-                        "DataCardValue79 As 'Text input'":
+                        DataCardValue79 As modernTextInput:
                             AccessibleLabel: =Parent.DisplayName
-                            BasePaletteColor: =
-                            BorderColor: =
+                            Appearance: =Appearance.FilledDarker
+                            BorderStyle: =""
+                            Default: =Parent.Default
                             DisplayMode: =Parent.DisplayMode
-                            Fill: =
-                            FontColor: =
-                            Height: =32
-                            Mode: ="'TextInputCanvas.Mode'.TextInputModeSingleLine"
+                            Font: =""
+                            FontWeight: =""
+                            MaxLength: =-1
+                            Placeholder: =""
                             Required: =Parent.Required
+                            Size: =0
+                            TriggerOutput: =TriggerOutput.FocusOut
                             ValidationState: =If(IsBlank(Parent.Error), "None", "Error")
-                            Value: =Parent.Default
                             Width: =Parent.Width - 48
                             X: =24
                             Y: =DataCardKey94.Y + DataCardKey94.Height + 4
@@ -4238,6 +4243,21 @@
                     PaddingTop: =10
                     ZIndex: =3
 
+                    formProgressLabel As Text:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =
+                        DisplayMode: =DisplayMode.View
+                        Fill: =
+                        FontColor: =
+                        Height: =32
+                        Size: =13
+                        Text: =(!IsBlank(DataCardValue21.Text) + !IsBlank(DataCardValue39.Text) + !IsBlank(DataCardValue68.Value) + !IsBlank(DataCardValue74.Text) + (Len(txt_PhoneNumber.Text) = 10) + !IsBlank(DataCardValue75.Text)) & " of 6 required fields filled"
+                        Width: =220
+                        Wrap: =false
+                        X: =0
+                        Y: =0
+                        ZIndex: =1
+
                     resetButton1_1 As Button:
                         BasePaletteColor: =
                         BorderColor: =
@@ -4254,7 +4274,7 @@
                         Width: =120
                         X: =0
                         Y: =0
-                        ZIndex: =1
+                        ZIndex: =2
 
                     CancelButton2 As Button:
                         AccessibleLabel: ="Cancel form button"
@@ -4274,7 +4294,7 @@
                         Width: =120
                         X: =0
                         Y: =0
-                        ZIndex: =2
+                        ZIndex: =3
 
                     avSubmitButton As Button:
                         AccessibleLabel: ="Submit form button"
@@ -4289,18 +4309,10 @@
                         LayoutMaxWidth: =
                         LayoutMinHeight: =32
                         LayoutMinWidth: =96
-                        OnSelect: |
-                            =If(
-                                avForm.Valid,
-                                SubmitForm(avForm);
-                                Navigate(homeScreen, ScreenTransition.Fade);
-                                Notify("Form submitted successfully!", NotificationType.Success),
-                                Notify("Please fill all required fields", NotificationType.Error);
-                                If(avForm.Unsaved, ResetForm(avForm))
-                            )
+                        OnSelect: =If(avForm.Valid, SubmitForm(avForm), Notify("Please fill all required fields", NotificationType.Error))
                         Text: ="Submit"
                         Width: =120
                         X: =0
                         Y: =0
-                        ZIndex: =3
+                        ZIndex: =4
 
